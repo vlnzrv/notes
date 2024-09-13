@@ -1,20 +1,18 @@
-# Комфорт в терминале
+# Comfort in the Terminal
 
-Сравните две картинки ниже:
+Compare the two images below:
 
 ![bash-vs-zsh](https://i.imgur.com/2edKk11.png)
 
-Если вам было бы комфортнее работать в терминале слева, то можете дальше не читать.
+If you'd be more comfortable working in the terminal on the left, feel free to stop reading.
 
-В данном разделе мы посмотрим, как установить `zsh`,
-как настроить его функциональность и как кастомизировать его внешний вид.
+In this section, we'll look at how to install `zsh`, set up its functionality, and customize its appearance.
 
-## Установка
+## Installation
 
 ### zsh
 
-Официальную инструкцию можно найти [здесь](https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH), 
-но если в двух словах, то:
+The official instructions can be found [here](https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH), here, but in short:
 * macOS: 
   ```shell script
   brew install zsh
@@ -28,16 +26,15 @@
   pacman -S zsh
   ```
 
-Сразу после установки лучше не стало (слева `bash`, справа `zsh`, оба на Ubuntu):
+Right after installation, things don't look much better (left: `bash`, right: `zsh`, both on Ubuntu):
 
 ![after-install](https://i.imgur.com/Zc674oc.png)
 
-С голым `zsh` можно работать, однако для настройки нам понадобится фреймворк `Oh My Zsh`.
+You can work with plain `zsh`, but to configure it properly, we'll need the `Oh My Zsh` framework.
 
 ### Oh My Zsh
 
-[Тут](https://github.com/ohmyzsh/ohmyzsh) располагается полное описание, 
-а для тех, кто в спешке (должен быть установлен `git`):
+You can find the full description [here](https://github.com/ohmyzsh/ohmyzsh), but for those in a hurry (make sure `git` is installed):
 * curl:
   ```shell script
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -47,78 +44,76 @@
   sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   ```
 
-Теперь чуть по-красивее:
+Now it's a bit prettier:
 
 ![after-oh-my-zsh](https://i.imgur.com/peWryj6.png)
 
-Так выглядит автодополнение для `git`:
+Here's what `git` autocomplete looks like:
 
 ![git-autocomplete](https://i.imgur.com/l8BUuJk.png)
 
-## Кастомизация
+## Customization
 
-Основные настройки для `zsh` лежат по пути `~/.zshrc`:
+The main settings for `zsh` are located at `~/.zshrc`:
 
 ![zshrc](https://i.imgur.com/mIOkVTW.png)
 
-Мы рассмотрим несколько из них (по большей части, плагины и темы), всё остальное вы можете изучить сами.
+We will cover a few of these (mainly plugins and themes), and you can explore the rest on your own.
 
 ### Plugins
 
-Полный список можно найти [здесь](https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins). 
+You can find the full list of plugins [here](https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins). 
 
-Начнём с [подсветки синтаксиса](https://github.com/zsh-users/zsh-syntax-highlighting):
-1. Клонируем репозиторий в папку `Oh My Zsh`:
+We'll start with [syntax highlighting](https://github.com/zsh-users/zsh-syntax-highlighting):
+1. Clone the repository into the `Oh My Zsh` folder:
    ```shell script
    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
    ```
-2. В файле настроек `~/.zshrc` добавляем `zsh-syntax-highlighting` в общий список плагинов:
+2. In the `~/.zshrc` settings file, add `zsh-syntax-highlighting` to the list of plugins: 
    ![syntax-highlighting](https://i.imgur.com/73uJoUh.png)
    
-При следующем запуске / в новой сессии / при выполнении `source ~/.zshrc` можно увидеть результат:
+In the next session or after running source `~/.zshrc`, you will see the result: 
 ![after-syntax-highlighting](https://i.imgur.com/P8UGiGp.png)
 
-Теперь черёд [автодополнений](https://github.com/zsh-users/zsh-autosuggestions), действия точно такие же:
-1. Сначала клонируем репозиторий:
+Next up is [autosuggestions](https://github.com/zsh-users/zsh-autosuggestions), with the same steps:
+1. First, clone the repository:
    ```shell script
    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
    ```
-2. Теперь регистрируем плагин `zsh-autosuggestions`:
+2. Then register the `zsh-autosuggestions` plugin: 
    ![autosuggestions](https://i.imgur.com/DRu2POE.png)
 
-Опять перезапускаем терминал / делаем новую сессию / `source ~/.zshrc` и получаем подсказки:
+After restarting the terminal, starting a new session, or running `source ~/.zshrc`, you'll see suggestions: 
 ![after-autosuggestions](https://i.imgur.com/qeLbjoD.png)
 
-Если цвет подсказок белый / сильно совпадает с цветом обычного текста, 
-попробуйте поэкспериментировать с переменной `TERM`, например, вот так: `export TERM=xterm-256color`.
+If the suggestion color is too similar to the regular text (e.g., white), try experimenting with the `TERM` variable, like so: `export TERM=xterm-256color`.
 
-И ещё один плагин для быстрой навигации – [`z`](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/z):
-1. Просто указываем его в списке:
+One more plugin for quick navigation – [`z`](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/z):
+1. Simply add it to the list of plugins:
    ![z](https://i.imgur.com/cETwJ27.png)
 
-Теперь мы можем попасть в директорию, в которую хоть раз заходили при помощи `cd`, набрав лишь часть названия:
+Now you can jump to any directory you've previously visited with `cd` by typing just part of its name: 
 ![after-z](https://i.imgur.com/fBrE289.png)
 
 ### Themes
 
-Полный список тем можно найти [тут](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes).
+You can find the full list of themes [here](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes).
 
-Их много разных на любой цвет и вкус, но есть та, что выделяется сильнее всех остальных, – `Powerlevel10k`:
-1. Сначала нужно [установить рекомендуемый шрифт](https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k)
-2. Теперь клонируем репозиторий:
+There are plenty of themes for every style and preference, but one that stands out is `Powerlevel10k`:
+1. First, you need to [install the recommended font.](https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k)
+2. Next, clone the repository:
    ```shell script
    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
    ```
-3. Указываем тему `powerlevel10k/powerlevel10k` в `~/.zshrc`:
+3. Specify the theme `powerlevel10k/powerlevel10k` in your `~/.zshrc`:
    ![powerlevel10k](https://i.imgur.com/L9enCUq.png)
 
-Перезагружаемся и сразу попадаем в окно настройки. 
-Внимательно читаем и отвечаем на все вопросы, настраиваем по вкусу и вуаля:
+After restarting, you'll be taken straight to the configuration window. Read the prompts carefully, customize everything to your liking, and voilà: 
 ![after-powerlevel10k](https://i.imgur.com/ZdkmcrC.png)
 
 ### Terminal
 
-Получить ещё больше возможностей настроить терминал можно, если установить новый терминал вместо дефолтного.
-* macOS: однозначно [iTerm2](https://www.iterm2.com/) (именно он изображён на самой верхней картинке справа).
-* Linux-подобные: можно попробовать [Guake](http://guake-project.org/), [Tilda](https://github.com/lanoxx/tilda), 
+You can unlock even more customization options by installing a new terminal instead of using the default one.
+* macOS: The clear choice is [iTerm2](https://www.iterm2.com/) (this is the terminal shown on the top right image).
+* Linux-based systems: You can try [Guake](http://guake-project.org/), [Tilda](https://github.com/lanoxx/tilda), 
 [Yakuake](https://github.com/KDE/yakuake).
